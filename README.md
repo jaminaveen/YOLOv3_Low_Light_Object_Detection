@@ -12,24 +12,29 @@ $ git clone https://github.com/jaminaveen/YOLOv3_Low_Light_Object_Detection/
 $ pip install -r ./docs/requirements.txt
 
 [3] Exporting loaded COCO weights as TF checkpoint(yolov3_coco.ckpt)
-$ cd YOLO
-$ wget https://github.com/YunYang1994/tensorflowyolov3/releases/download/v1.0/yolov3_coco.tar.gz
-tar -xvf yolov3_coco.tar.gz
+                 
+         $ cd YOLO
+         $ wget wget https://pjreddie.com/media/files/yolov3.weights
  
-[4] Data preprocessing to get all images from ExDark and ExDark_Anno into a folder called train and create dataset .txt
+[4] Data preprocessing to get all images from ExDark and ExDark_Anno into a folder called test_benchmark folder and creating annotations file called test_benchmark.txt, test_he.txt, test_dhe.txt,test_ying.txt are present in /data/dataset/ folder. We have also uploaded notebooks in the same folder that will guide through the generation of annotations file.
 
+    Annotation files should be in following format
+     xxx/xxx.jpg 18.19,6.32,424.13,421.83,20 323.86,2.65,640.0,421.94,20
+     xxx/xxx.jpg 48,240,195,371,11 8,12,352,498,14
+     # image_path x_min, y_min, x_max, y_max, class_id  x_min, y_min ,..., class_id 
 
+         
 [5] Testing on ExDark data set to obtain the Benchmark mAP
 
 ---> Edit the file  $ cd core/config.py  to make necessary configurations.
 
     __C.YOLO.CLASSES                = "./data/classes/coco.names"
-    __C.TEST.ANNOT_PATH             = "./data/dataset/dataset.txt"
+    __C.TEST.ANNOT_PATH             = "./data/dataset/test_benchmark.txt"
 
 ---> Testing and Evaluation
-$ python test.py
-$ cd mAP
-$ python main.py -na
+         
+         $ python test.py
+         $ python ../mAP/main.py
 
 [6] Applying the histogram equalization enhancement technique on the ExDark data.
 
@@ -37,7 +42,7 @@ $ python main.py -na
 ---> Run the dataprep.py to obtain the annotations path as dataset_he.txt in the path /data/dataset/dataset_he.txt
 ---> Edit the file  $ cd core/config.py  to make necessary configurations.
 
-     __C.TEST.ANNOT_PATH             = "./data/dataset/dataset_he.txt"
+     __C.TEST.ANNOT_PATH             = "./data/dataset/test_he.txt"
   
 ---> Now run the test.py to test the YOLOv3 on the he enhanced images
 ---> Evaluate the performance by computing the mAP score. To do this :
@@ -50,12 +55,13 @@ $ python main.py -na
 ---> Run the dataprep.py to obtain the annotations path as dataset_he.txt in the path /data/dataset/dataset_dhe.txt
 ---> Edit the file  $ cd core/config.py  to make necessary configurations.
 
-     __C.TEST.ANNOT_PATH             = "./data/dataset/dataset_dhe.txt"
+     __C.TEST.ANNOT_PATH             = "./data/dataset/test_dhe.txt"
   
 ---> Now run the test.py to test the YOLOv3 on the dhe enhanced images
 ---> Evaluate the performance by computing the mAP score. To do this :
-$ cd mAP
-$ python main.py -na
+
+               $ cd mAP
+               $ python main.py -na
 
 [8] Applying the exposure fusion framework enhancement technique on the ExDark data.
 
@@ -63,14 +69,14 @@ $ python main.py -na
 ---> Run the dataprep.py to obtain the annotations path as dataset_ying.txt in the path /data/dataset/dataset_ying.txt
 ---> Edit the file  $ cd core/config.py  to make necessary configurations.
 
-     __C.TEST.ANNOT_PATH             = "./data/dataset/dataset_ying.txt"
+     __C.TEST.ANNOT_PATH             = "./data/dataset/test_ying.txt"
   
 ---> Now run the test.py to test the YOLOv3 on the he enhanced images
 ---> Evaluate the performance by computing the mAP score. To do this :
-$ cd mAP
-$ python main.py -na
+ 
+                  python ..mAP/main.py
 
-[9]Transfer Learning
+[9] Code for transfer learning and fine tuning on final layers is present in train_yolov3_darkdata.ipynb
 
 
 
