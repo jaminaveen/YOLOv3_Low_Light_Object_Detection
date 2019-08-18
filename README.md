@@ -6,10 +6,12 @@ We have used the Exclusively Dark (ExDark). We have compared the mAP(mean Averag
 Steps :
 
 [1]  Clone this file
-$ git clone https://github.com/jaminaveen/YOLOv3_Low_Light_Object_Detection/
+
+         $ git clone https://github.com/jaminaveen/YOLOv3_Low_Light_Object_Detection/
 
 [2] Dependencies to run the code
-$ pip install -r ./docs/requirements.txt
+
+         $ pip install -r ./docs/requirements.txt
 
 [3] Exporting loaded COCO weights as TF checkpoint(yolov3_coco.ckpt)
                  
@@ -46,8 +48,8 @@ $ pip install -r ./docs/requirements.txt
   
 ---> Now run the test.py to test the YOLOv3 on the he enhanced images
 ---> Evaluate the performance by computing the mAP score. To do this :
-$ cd mAP
-$ python main.py -na
+
+      $ python ..mAP/main.py
 
 [7] Applying the dynamic histogram equalization enhancement technique on the ExDark data.
 
