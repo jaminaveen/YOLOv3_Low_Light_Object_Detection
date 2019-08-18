@@ -18,17 +18,66 @@ tar -xvf yolov3_coco.tar.gz
  
 [4] Data preprocessing to get all images from ExDark and ExDark_Anno into a folder called train and create dataset .txt
 
+
 [5] Testing on ExDark data set to obtain the Benchmark mAP
 
-Edit the file  $ cd core/config.py  to make necessary configurations.
+---> Edit the file  $ cd core/config.py  to make necessary configurations.
 
-__C.YOLO.CLASSES                = "./data/classes/coco.names"
-__C.TEST.ANNOT_PATH             = "./data/dataset/dataset.txt"
+    __C.YOLO.CLASSES                = "./data/classes/coco.names"
+    __C.TEST.ANNOT_PATH             = "./data/dataset/dataset.txt"
 
-Testing and Evaluation
-$ python evaluate.py
+---> Testing and Evaluation
+$ python test.py
 $ cd mAP
 $ python main.py -na
+
+[6] Applying the histogram equalization enhancement technique on the ExDark data.
+
+---> Run the $ he.py code to perform the image contrast enhancement. The enhanced images are saved in the path /data/dataset/he_train
+---> Run the dataprep.py to obtain the annotations path as dataset_he.txt in the path /data/dataset/dataset_he.txt
+---> Edit the file  $ cd core/config.py  to make necessary configurations.
+
+     __C.TEST.ANNOT_PATH             = "./data/dataset/dataset_he.txt"
+  
+---> Now run the test.py to test the YOLOv3 on the he enhanced images
+---> Evaluate the performance by computing the mAP score. To do this :
+$ cd mAP
+$ python main.py -na
+
+[7] Applying the dynamic histogram equalization enhancement technique on the ExDark data.
+
+---> Run the $ dhe.py code to perform the image contrast enhancement. The enhanced images are saved in the path /data/dataset/dhe_train
+---> Run the dataprep.py to obtain the annotations path as dataset_he.txt in the path /data/dataset/dataset_dhe.txt
+---> Edit the file  $ cd core/config.py  to make necessary configurations.
+
+     __C.TEST.ANNOT_PATH             = "./data/dataset/dataset_dhe.txt"
+  
+---> Now run the test.py to test the YOLOv3 on the dhe enhanced images
+---> Evaluate the performance by computing the mAP score. To do this :
+$ cd mAP
+$ python main.py -na
+
+[8] Applying the exposure fusion framework enhancement technique on the ExDark data.
+
+---> Run the $ Ying.py code to perform the image contrast enhancement. The enhanced images are saved in the path /data/dataset/ying_train
+---> Run the dataprep.py to obtain the annotations path as dataset_ying.txt in the path /data/dataset/dataset_ying.txt
+---> Edit the file  $ cd core/config.py  to make necessary configurations.
+
+     __C.TEST.ANNOT_PATH             = "./data/dataset/dataset_ying.txt"
+  
+---> Now run the test.py to test the YOLOv3 on the he enhanced images
+---> Evaluate the performance by computing the mAP score. To do this :
+$ cd mAP
+$ python main.py -na
+
+[9]Transfer Learning
+
+
+
+
+
+
+
 
 
 
