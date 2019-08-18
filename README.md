@@ -4,10 +4,13 @@ We have used the Exclusively Dark (ExDark). We have compared the mAP(mean Averag
  
  
 Steps :
- [1]  Clone this file
+
+[1]  Clone this file
 $ git clone https://github.com/jaminaveen/YOLOv3_Low_Light_Object_Detection/
+
 [2] Dependencies to run the code
 $ pip install -r ./docs/requirements.txt
+
 [3] Exporting loaded COCO weights as TF checkpoint(yolov3_coco.ckpt)
 $ cd YOLO
 $ wget https://github.com/YunYang1994/tensorflowyolov3/releases/download/v1.0/yolov3_coco.tar.gz
